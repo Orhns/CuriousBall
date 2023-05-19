@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public Transform spawnPoint;
     public GameObject sphere;
+    public GameObject water;
 
     public GameObject pikap2;
 
     public bool helperforjump = false;
 
+    //timer2menu
+    public float timeRemaining = 3;
+    public bool timerIsRunning = false;
     
 
     void Start() {
@@ -52,8 +57,26 @@ public class PlayerController : MonoBehaviour
             ballIsOnTheGround = false;
         }
         ballIsOnTheGround = true;
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            SceneManager.LoadScene(0);
+        }
+
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                timeRemaining = 0;
+                timerIsRunning = false;
+                SceneManager.LoadScene(0);
+            }
+        }
     }
-    
     void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag("pickup"))
@@ -61,6 +84,12 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
+        }
+
+        if (other.gameObject.CompareTag("water"))
+        {
+            ResetTheGame();
+            //PositionPlayer();
         }
 
         if (other.gameObject.CompareTag("enlight"))
@@ -77,9 +106,11 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             winText.text = "Congratz!";
             winText2.text = "You win!";
+            timerIsRunning = true;
         }
-
     }
+
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -96,4 +127,8 @@ public class PlayerController : MonoBehaviour
 		player.transform.position = spawnPoint.position;
 		player.transform.rotation = spawnPoint.rotation;
 	}
+
+    public void ResetTheGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

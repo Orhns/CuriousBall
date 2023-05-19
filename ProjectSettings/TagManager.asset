@@ -12,6 +12,7 @@ TagManager:
   - merdiven
   - pickup3
   - pickup4
+  - water
   layers:
   - Default
   - TransparentFX
