@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - pickup
+  - enlight
+  - player
+  - sphere
+  - pickup2
+  - merdiven
+  - pickup3
+  - pickup4
   layers:
   - Default
   - TransparentFX
