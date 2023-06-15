@@ -1,6 +1,6 @@
 # CuriousBall
-Designed & builded a game with Unity. 
-A scene for main game and other for menu screen. 
+Designed & builded a game with Unity. <br> 
+A scene for main game and other for menu screen. <br> 
 Implemented features for created objects and defined the triggers.
 <hr>
 <p align="center">
