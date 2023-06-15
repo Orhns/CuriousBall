@@ -1,5 +1,4 @@
 # CuriousBall
-Unity
 Designed & builded a game with Unity. 
 A scene for main game and other for menu screen. 
 Implemented features for created objects and defined the triggers.
